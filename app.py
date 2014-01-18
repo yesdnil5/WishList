@@ -1,18 +1,29 @@
 from flask import Flask, render_template, request
 from pymongo import MongoClient
-client = MongoClient('127.0.0.1', 27017)
+import string
+import random
 
+client = MongoClient('127.0.0.1', 27017)
+db = client.test
+collection = db.testData
 app = Flask(__name__)
+
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+	return ''.join(random.choice(chars) for x in range(size))
+
+@app.route("/view", methods=['POST', 'GET'])
+def view():
+	ranid = request.form['ranid']
+	wishlist = collection.find_one({"id": ranid})
+	return str(wishlist['WishList']) 
 
 @app.route("/storeCreate", methods=['POST', 'GET'])
 def store():
+	ranid = id_generator()
 	string = request.form['list']
-	db = client.test
-	collection = db.testData
-	col = []
-	for thing in collection.find():
-		col.append(thing)
-	return str(col)
+	post = {"WishList": string, "id": ranid}
+	post_id = collection.insert(post)
+	return ranid
 
 @app.route("/create", methods=['POST', 'GET'])
 def create():
