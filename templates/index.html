@@ -1,10 +1,59 @@
-What are you here for?
-<form action="/view" id="usrform" method="post" name="test">
-	ID for view <input type="text" name="ranid">
-	<input type="submit" value="View">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+		
+		<title>Wish List</title>
 
-<form action="/create" method="get">
-	<input type="submit" value="Create Wish List"
-		name="Submit" id="frm1_submit" />
-</form>
+	    <!-- Bootstrap core CSS -->
+	    <link href="static/css/bootstrap.css" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+	    <link href="jumbotron-narrow.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right nav-fixed-top">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="http://lindseycrocker.com">My Website</a></li>
+			</ul>
+			<h3 class="text-muted">Wish List</h3>
+		</div>
+		<br>
+		<div class="jumbotron">
+			<h1 align="center">Welcome!</h1>
+			<br>	
+			<div class="row marketing">
+				<div class="col-lg-6" style="text-align:center">
+					<p>Create your own wish list to send to your friends!</p>
+					<a class="btn btn-lg btn-success" href="/create" role="button">Create Wish List</a>
+				</div>
+				<div class="col-lg-6" style="text-align:center">
+					<p>Need to view another wish list? Enter the code below!</p>
+					<form method="POST" action="/view">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-success" type="button">View Wish List</button>
+							</span>
+							<input type="text" class="form-control" name="ranid">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<p>Lindsey Crocker</p>
+		</div>
+	</div>
+
+	</body>
+</html>
