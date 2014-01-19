@@ -11,10 +11,15 @@ collection = db.testData
 fs = gridfs.GridFS(db, collection='testData')
 app = Flask(__name__)
 
-def update(ranid, item):
-	collection.update({"ranid": ranid, "Item":item},{"bought": True});
-	print 'hello'
-	return True
+@app.route('/update', methods=['POST', 'GET'])
+def update():
+	ranid = request.values.get('ranid', None)
+	print ranid
+	item = request.values.get('item', None)
+	print item
+	print collection.update({"id": str(ranid), "Item":str(item)},{'$set': {"bought": 1}});
+	return 'hello' 
+	
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for x in range(size))
@@ -37,7 +42,7 @@ def store():
 	string = string.replace('\r', '')
 	i=0
 	for item in string.split('\n'):
-		post = {"Item": str(item), "id": ranid, "num": i, "bought": False}
+		post = {"Item": str(item), "id": ranid, "num": i, "bought": 0}
 		collection.insert(post)
 		i+=1
 	return render_template('storeCreate.html', ranid=ranid)

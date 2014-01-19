@@ -37,7 +37,7 @@
 		<ul>
 		{% for key, value in items.iteritems() %}
 		<p>
-			<button type="button" class="btn btn-link striketrigger">
+		<button type="button" value="{{key}}" class="btn btn-link striketrigger">
 				{% if value %}
 				<strike><li>{{key}}</li></strike>
 				{% else %}
@@ -57,32 +57,21 @@
 
 $(".striketrigger").click(function () {
 	$(this).toggleClass("strike");
-	
-	/*$.ajax({
-		type:"post",
-		url:"~/Desktop/WishList/app.py",
-		success: update(ranid, $(this).val()){
+	$.ajax({
+		type: "POST",
+		url: "update",
+		data: {
+			'ranid': "{{ranid}}",
+			'item': $(this).val()
+		},
+		success: function(response) {
+			//$(this).toggleClass("strike");
 		}
-	});*/
-
+	});
+	return false;
 });
 
 </script>
-<!--
-<script>
-function change( ranid, item)
-{
-$.ajax({
-	type:'post',
-	url:"~/Desktop/WishList/app.py",
-	success: update(ranid, item){
-		$(this).toggleClass("strike");
-	}
-});
-}
-
-</script>
-//-->
 </body>
 
 </html>
