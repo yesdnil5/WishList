@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from pymongo import MongoClient
+import gridfs
 import string
 import random
 
@@ -15,15 +16,16 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 def view():
 	ranid = request.form['ranid']
 	wishlist = collection.find_one({"id": ranid})
-	return str(wishlist['WishList']) 
+	return render_template('view.html', wishlist = str(wishlist['WishList'])) 
 
 @app.route("/storeCreate", methods=['POST', 'GET'])
 def store():
 	ranid = id_generator()
+	print str(request.form)
 	string = request.form['list']
 	post = {"WishList": string, "id": ranid}
 	post_id = collection.insert(post)
-	return ranid
+	return render_template('storeCreate.html', ranid=ranid)
 
 @app.route("/create", methods=['POST', 'GET'])
 def create():
