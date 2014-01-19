@@ -30,7 +30,15 @@
 	<br>
 	<div class="jumbotron">
 		<h1 align="center">My Wish List</h1>
-		{{ wishlist }}
+		<ul>
+		{% for item in wishlist %}
+		<p>
+			<button type="button" class="btn btn-link">
+				<li>{{item}}</li>
+			</button>
+		</p>
+		{% endfor %}
+		</ul>
 	</div>
 </div>
 </body>

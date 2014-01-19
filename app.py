@@ -7,6 +7,7 @@ import random
 client = MongoClient('127.0.0.1', 27017)
 db = client.test
 collection = db.testData
+fs = gridfs.GridFS(db, collection='testData')
 app = Flask(__name__)
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -15,16 +16,21 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 @app.route("/view", methods=['POST', 'GET'])
 def view():
 	ranid = request.form['ranid']
-	wishlist = collection.find_one({"id": ranid})
-	return render_template('view.html', wishlist = str(wishlist['WishList'])) 
+	# wishlist = collection.find_one({"id": ranid})
+	wishlist = [] 
+	line = fs.get_version(ranid).read()
+	line.replace('\r', '')
+	for item in line.split('\n'):
+		wishlist.append(item)
+	return render_template('view.html', wishlist = wishlist) 
 
 @app.route("/storeCreate", methods=['POST', 'GET'])
 def store():
 	ranid = id_generator()
-	print str(request.form)
 	string = request.form['list']
-	post = {"WishList": string, "id": ranid}
-	post_id = collection.insert(post)
+	a = fs.put(str(string), filename=ranid)
+	# post = {"WishList": string, "id": ranid}
+	# post_id = collection.insert(post)
 	return render_template('storeCreate.html', ranid=ranid)
 
 @app.route("/create", methods=['POST', 'GET'])
