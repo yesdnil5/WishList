@@ -7,6 +7,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<style>
+.strike {text-decoration: line-through;}
+</style>
+
 <title>Wish List</title>
 
 <!-- Bootstrap core CSS -->
@@ -31,16 +35,54 @@
 	<div class="jumbotron">
 		<h1 align="center">My Wish List</h1>
 		<ul>
-		{% for item in wishlist %}
+		{% for key, value in items.iteritems() %}
 		<p>
-			<button type="button" class="btn btn-link">
-				<li>{{item}}</li>
+			<button type="button" class="btn btn-link striketrigger">
+				{% if value %}
+				<strike><li>{{key}}</li></strike>
+				{% else %}
+				<li>{{key}}</li>
+				{% endif %}
 			</button>
 		</p>
 		{% endfor %}
 		</ul>
 	</div>
 </div>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script>
+
+$(".striketrigger").click(function () {
+	$(this).toggleClass("strike");
+	
+	/*$.ajax({
+		type:"post",
+		url:"~/Desktop/WishList/app.py",
+		success: update(ranid, $(this).val()){
+		}
+	});*/
+
+});
+
+</script>
+<!--
+<script>
+function change( ranid, item)
+{
+$.ajax({
+	type:'post',
+	url:"~/Desktop/WishList/app.py",
+	success: update(ranid, item){
+		$(this).toggleClass("strike");
+	}
+});
+}
+
+</script>
+//-->
 </body>
 
 </html>
