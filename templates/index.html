@@ -17,7 +17,7 @@
 
 	</head>
 
-	<body>
+	<body background="/static/images/greyzz.png">
 
 	<div class="container">
 		<div class="header">
@@ -27,25 +27,28 @@
 			</ul>
 			<h3 class="text-muted">Wish List</h3>
 		</div>
+	</div>
 		<br>
 		<div class="jumbotron">
-			<h1 align="center">Welcome!</h1>
-			<br>	
-			<div class="row marketing">
-				<div class="col-lg-6" style="text-align:center">
-					<p>Create your own wish list to send to your friends!</p>
-					<a class="btn btn-lg btn-success" href="/create" role="button">Create Wish List</a>
-				</div>
-				<div class="col-lg-6" style="text-align:center">
-					<p>Need to view another wish list? Enter the code below!</p>
-					<form method="POST" action="/view">
-						<div class="input-group">
-							<span class="input-group-btn">
-								<button class="btn btn-success" type="button">View Wish List</button>
-							</span>
-							<input type="text" class="form-control" name="ranid">
-						</div>
-					</form>
+			<div class="container">
+				<h1 align="center">Welcome!</h1>
+				<br>	
+				<div class="row marketing">
+					<div class="col-lg-6" style="text-align:center">
+						<p>Create your own wish list to send to your friends!</p>
+						<a class="btn btn-lg btn-success" href="/create" role="button">Create Wish List</a>
+					</div>
+					<div class="col-lg-6" style="text-align:center">
+						<p>Need to view another wish list? Enter the code below!</p>
+						<form method="POST" action="/view">
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-success" type="button">View Wish List</button>
+								</span>
+								<input type="text" class="form-control" name="ranid">
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

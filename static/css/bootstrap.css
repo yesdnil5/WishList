@@ -2486,9 +2486,9 @@ fieldset[disabled] .btn-danger.active {
 }
 
 .btn-success {
-  color: #ffffff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  color: #000000;
+  background-color: #FFFF66;
+  border-color: #FFFF99;
 }
 
 .btn-success:hover,
@@ -5228,7 +5228,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #87CEFA;
 }
 
 .jumbotron h1,
