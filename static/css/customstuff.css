@@ -1,0 +1,12 @@
+h1{
+	font-family: 'Kaushan Script', cursive;
+	text-shadow: 4px 4px 4px #aaa;
+}
+
+.jumbotron{
+	box-shadow: 10px 10px 5px #aaa;
+}
+ 
+.btn-lg{
+	box-shadow: 4px 4px 4px #aaa;
+}
